@@ -17,7 +17,7 @@ export class RmqService {
 		this.logger.debug(`ACK (pattern: ${context.getPattern()}, tag: ${tag})`)
 	}
 
-	public nack(context: RmqContext, event: string, requeue = false) {
+	public nack(context: RmqContext, requeue = false) {
 		const channel = context.getChannelRef()
 		const msg = context.getMessage()
 		const tag = msg?.fields?.deliveryTag
