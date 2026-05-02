@@ -1,3 +1,4 @@
+import type { OtpRequestedEvent } from '@dewtix/contracts'
 import { Controller } from '@nestjs/common'
 import { Ctx, EventPattern, Payload, RmqContext } from '@nestjs/microservices'
 import { RmqService } from 'src/infrastructure/rmq/rmq.service'
@@ -12,7 +13,10 @@ export class NotificationsController {
 	) {}
 
 	@EventPattern('auth.otp.requested')
-	public otpRequested(@Payload() data: any, @Ctx() ctx: RmqContext) {
+	public otpRequested(
+		@Payload() data: OtpRequestedEvent,
+		@Ctx() ctx: RmqContext
+	) {
 		const event = 'auth.otp.requested'
 
 		try {
