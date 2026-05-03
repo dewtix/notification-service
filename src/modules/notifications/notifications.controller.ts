@@ -13,14 +13,15 @@ export class NotificationsController {
 	) {}
 
 	@EventPattern('auth.otp.requested')
-	public otpRequested(
+	public async otpRequested(
 		@Payload() data: OtpRequestedEvent,
 		@Ctx() ctx: RmqContext
 	) {
 		const event = 'auth.otp.requested'
 
 		try {
-			console.log('OTP event recieved: ', data)
+			await this.notificationsService.sendOtp(data)
+
 			this.rmqService.ack(ctx)
 		} catch (error) {
 			console.log('otp error: ', error)
