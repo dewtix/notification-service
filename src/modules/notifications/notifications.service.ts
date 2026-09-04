@@ -16,4 +16,16 @@ export class NotificationsService {
 		if (type === 'email') await this.mailService.sendOtp(identifier, code)
 		else await this.smsService.sendOtp(identifier, code)
 	}
+
+	public async sendPhoneChange(data: PhoneChangedEvent) {
+		const { phone, code } = data
+
+		return await this.smsService.sendPhoneChange(phone, code)
+	}
+
+	public async sendEmailChange(data: EmailChangedEvent) {
+		const { email, code } = data
+
+		return await this.mailService.sendEmailChange(email, code)
+	}
 }
