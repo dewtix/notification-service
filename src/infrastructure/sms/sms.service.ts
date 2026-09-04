@@ -45,7 +45,8 @@ export class SmsService {
 			api_secret: this.options.apiSecret,
 			from: data.sender ?? this.options.from,
 			to: data.destination.replace('+', ''),
-			text: data.text
+			text: data.text,
+			type: 'unicode'
 		}
 
 		return this.request<SendSmsResponse>('POST', payload)
