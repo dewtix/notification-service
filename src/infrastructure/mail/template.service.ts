@@ -7,6 +7,7 @@ import * as path from 'path'
 export class TemplateService {
 	private cache = new Map<string, Handlebars.TemplateDelegate>()
 
+	// eslint-disable-next-line @typescript-eslint/require-await
 	public async render(templateName: string, context?: Record<string, any>) {
 		if (!this.cache.has(templateName)) {
 			const templatePath = path.join(

@@ -8,7 +8,7 @@ export class RmqService {
 	public ack(context: RmqContext) {
 		const channel = context.getChannelRef()
 		const msg = context.getMessage()
-		const tag = msg?.fields.deliferyTag
+		const tag = msg?.fields.deliveryTag
 
 		if (!tag) return
 
